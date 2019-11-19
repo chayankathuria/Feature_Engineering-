@@ -24,4 +24,9 @@ The polynomial regression adds interaction terms like x.y or 2.x.y etc. This int
 feature as it might have better correaltion with the target
 
 -----------------------------------------------------
+## Transformations 
 
+Many times the data we envounter is skewed. Hence we need to apply some transformations in order to make it normally distributed.
+Two such transformations are Log transformations and Box-Cox transformation.
+
+Log transformation apply the log function to the data.
