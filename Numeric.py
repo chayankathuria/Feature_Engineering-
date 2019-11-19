@@ -94,4 +94,31 @@ fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_log']].iloc[4:9]   # Adding 1 wi
 8	9dc233f8ed1c6eb2432672ab4bb39249	33.0	80000.0	11.289794
 '''
 
+# Box–Cox transform
+
+# get optimal lambda value from non null income values
+income = np.array(fcc_survey_df['Income'])
+income_clean = income[~np.isnan(income)]
+l, opt_lambda = spstats.boxcox(income_clean)
+print('Optimal lambda value:', opt_lambda)
+
+# Optimal lambda value: 0.117991239456
+
+fcc_survey_df['Income_boxcox_lambda_0'] = spstats.boxcox((1+fcc_survey_df['Income']), 
+                                                         lmbda=0)
+fcc_survey_df['Income_boxcox_lambda_opt'] = spstats.boxcox(fcc_survey_df['Income'], 
+                                                           lmbda=opt_lambda)
+fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_log', 
+               'Income_boxcox_lambda_0', 'Income_boxcox_lambda_opt']].iloc[4:9]
+
+'''
+      ID.x	                         Age	Income	Income_log Income_boxcox_lambda_0	  Income_boxcox_lambda_opt
+4	9368291c93d5d5f5c8cdb1a575e18bec	20.0	6000.0	8.699681	      8.699681	                  15.180668
+5	dd0e77eab9270e4b67c19b0d6bbf621b	34.0	40000.0	10.596660	      10.596660                 	21.115342
+6	7599c0aa0419b59fd11ffede98a3665d	23.0	32000.0	10.373522	      10.373522                 	20.346420
+7	6dff182db452487f07a47596f314bddc	35.0	40000.0	10.596660	      10.596660                 	21.115342
+8	9dc233f8ed1c6eb2432672ab4bb39249	33.0	80000.0	11.289794	      11.289794                  	23.637131
+'''
+
+
 
