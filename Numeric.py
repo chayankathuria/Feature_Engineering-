@@ -75,3 +75,23 @@ Attack	Defense	Attack^2	Attack x Defense	Defense^2
 3	100.0	123.0	  10000.0	       12300.0	     15129.0
 4	52.0	43.0	  2704.0	       2236.0	       1849.0
 '''
+# Mathematical Transformations
+## Log Transformation and Box-Cox plots
+
+'''
+Dealing with skewed data can be cumbersome and we need to transform the data in order to make the distribution normal.
+Log transformation and Box-Cox plots are 2 such techniques
+'''
+fcc_survey_df['Income_log'] = np.log((1+ fcc_survey_df['Income'])) # Here 1 is added in order to avoid log(0) as it is not defined. 
+fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_log']].iloc[4:9]   # Adding 1 will not change the distribution and just shift the data
+
+'''
+                  ID.x	             Age	Income	Income_log
+4	9368291c93d5d5f5c8cdb1a575e18bec	20.0	6000.0	8.699681
+5	dd0e77eab9270e4b67c19b0d6bbf621b	34.0	40000.0	10.596660
+6	7599c0aa0419b59fd11ffede98a3665d	23.0	32000.0	10.373522
+7	6dff182db452487f07a47596f314bddc	35.0	40000.0	10.596660
+8	9dc233f8ed1c6eb2432672ab4bb39249	33.0	80000.0	11.289794
+'''
+
+
