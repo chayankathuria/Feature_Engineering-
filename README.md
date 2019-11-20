@@ -30,3 +30,12 @@ Many times the data we envounter is skewed. Hence we need to apply some transfor
 Two such transformations are Log transformations and Box-Cox transformation.
 
 Log transformation apply the log function to the data.
+
+-----------------------------------------------------
+## Box-cox Transformations
+
+A Box Cox transformation is a way to transform non-normal dependent variables into a normal shape. 
+Normality is an important assumption for many statistical techniques; 
+if your data isn’t normal, applying a Box-Cox means that you are able to run a broader number of tests.
+
+At the core of the Box Cox transformation is an exponent, lambda (λ), which varies from -5 to 5. All values of λ are considered and the optimal value for your data is selected; The “optimal value” is the one which results in the best approximation of a normal distribution curve.
