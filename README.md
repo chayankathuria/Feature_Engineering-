@@ -1,6 +1,8 @@
 # Feature_Engineering-
 Experimenting on features with various types of data 
 
+
+# Numerical Data
 -----------------------------------------------------
 ## Binarization
 
@@ -39,3 +41,8 @@ Normality is an important assumption for many statistical techniques;
 if your data isn’t normal, applying a Box-Cox means that you are able to run a broader number of tests.
 
 At the core of the Box Cox transformation is an exponent, lambda (λ), which varies from -5 to 5. All values of λ are considered and the optimal value for your data is selected; The “optimal value” is the one which results in the best approximation of a normal distribution curve.
+
+------------
+------------
+
+# Categorical Data
