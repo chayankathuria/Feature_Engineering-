@@ -95,6 +95,11 @@ fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_log']].iloc[4:9]   # Adding 1 wi
 '''
 
 # Box–Cox transform
+'''
+A Box Cox transformation is a way to transform non-normal dependent variables into a normal shape. 
+Normality is an important assumption for many statistical techniques; 
+if your data isn’t normal, applying a Box-Cox means that you are able to run a broader number of tests.
+'''
 
 # get optimal lambda value from non null income values
 income = np.array(fcc_survey_df['Income'])
