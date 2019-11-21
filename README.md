@@ -47,7 +47,13 @@ At the core of the Box Cox transformation is an exponent, lambda (λ), which var
 
 # Categorical Data
 ## Nominal Data
-'''
+
 Nominal data consists of names as labels and we need to transform these labels into numbers so that the algortithm can understand.
 One such technique is Label Encoding which converts labels into integers starting from 1.
-'''
+-------
+## Ordinal Data
+
+Ordinal Data is the typ of categorical data where the categories cannot be quantified but an order can be defined stating which is the least and which one is the highest. For ex. Unhappy < OK < Happy < Verry Happy
+
+Using map function is just another way to label encode categorical features, ordinal or nominal. But it is recommended only when the number
+of features is less because it requires hard-coding
