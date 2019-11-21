@@ -46,3 +46,8 @@ At the core of the Box Cox transformation is an exponent, lambda (λ), which var
 ------------
 
 # Categorical Data
+## Nominal Data
+'''
+Nominal data consists of names as labels and we need to transform these labels into numbers so that the algortithm can understand.
+One such technique is Label Encoding which converts labels into integers starting from 1.
+'''
