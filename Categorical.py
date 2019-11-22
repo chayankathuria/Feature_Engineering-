@@ -138,3 +138,29 @@ pd.concat([poke_df[['Name', 'Generation']], gen_dummy_features], axis=1).iloc[4:
 
 
 
+# Feature Hashing scheme
+
+unique_genres = np.unique(vg_df[['Genre']])
+print("Total game genres:", len(unique_genres))
+print(unique_genres)
+
+from sklearn.feature_extraction import FeatureHasher
+
+fh = FeatureHasher(n_features=6, input_type='string')
+hashed_features = fh.fit_transform(vg_df['Genre'])
+hashed_features = hashed_features.toarray()
+pd.concat([vg_df[['Name', 'Genre']], pd.DataFrame(hashed_features)], axis=1).iloc[1:7]
+
+'''
+
+Name	Genre	0	1	2	3	4	5
+1	Super Mario Bros.	Platform	0.0	2.0	2.0	-1.0	1.0	0.0
+2	Mario Kart Wii	Racing	-1.0	0.0	0.0	0.0	0.0	-1.0
+3	Wii Sports Resort	Sports	-2.0	2.0	0.0	-2.0	0.0	0.0
+4	Pokemon Red/Pokemon Blue	Role-Playing	-1.0	1.0	2.0	0.0	1.0	-1.0
+5	Tetris	Puzzle	0.0	1.0	1.0	-2.0	1.0	-1.0
+6	New Super Mario Bros.	Platform	0.0	2.0	2.0	-1.0	1.0	0.0
+'''
+
+
+
