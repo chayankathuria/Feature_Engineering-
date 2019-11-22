@@ -57,3 +57,10 @@ Ordinal Data is the typ of categorical data where the categories cannot be quant
 
 Using map function is just another way to label encode categorical features, ordinal or nominal. But it is recommended only when the number
 of features is less because it requires hard-coding
+
+## One Hot Encoding and Label Encoding
+
+Both these techniques are used to convert categorical data into numerical.
+One hot encoding uses a One vs. All technique. And adds n columns for n classes. 
+
+Label encoding denotes an integer to every class starting from 1.
