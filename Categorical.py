@@ -55,3 +55,86 @@ of features is less because it requires hard-coding.
 9	Swanna	            Gen 5	          5
 '''
 
+# One-Hot Encoding 
+
+'''
+Label Encoding Encodes labels with value between 0 and n_classes-1.
+
+OHE, on the other hand, Encodes categorical integer features using a one-hot aka one-of-K scheme.
+
+The input to the transformer should be a matrix of integers, denoting
+the values taken on by categorical (discrete) features. The output will be
+a sparse matrix where each column corresponds to one possible value of one
+feature. It is assumed that input features take on values in the range
+[0, n_values).
+
+'''
+# Let's take a look at our df
+poke_df[['Name', 'Generation', 'Legendary']].iloc[4:10]
+
+'''
+     Name	         Generation	 Legendary
+4	Octillery	          Gen 2	    False
+5	Helioptile	        Gen 6	    False
+6	Dialga	            Gen 4	    True
+7	DeoxysDefense Forme	Gen 3	    True
+8	Rapidash	          Gen 1	    False
+9	Swanna	            Gen 5	    False
+'''
+
+# Running label encoder first
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+
+# transform and map pokemon generations
+gen_le = LabelEncoder()
+gen_labels = gen_le.fit_transform(poke_df['Generation'])
+poke_df['Gen_Label'] = gen_labels
+
+# transform and map pokemon legendary status
+leg_le = LabelEncoder()
+leg_labels = leg_le.fit_transform(poke_df['Legendary'])
+poke_df['Lgnd_Label'] = leg_labels
+
+poke_df_sub = poke_df[['Name', 'Generation', 'Gen_Label', 'Legendary', 'Lgnd_Label']]
+poke_df_sub.iloc[4:10]
+
+'''
+Name	Generation	Gen_Label	  Legendary	Lgnd_Label
+4	Octillery	            Gen 2	    1	      False	0
+5	Helioptile	          Gen 6	    5	      False	0
+6	Dialga	              Gen 4	    3	      True	1
+7	DeoxysDefense Forme	  Gen 3	    2	      True	1
+8	Rapidash	            Gen 1	    0	      False	0
+9	Swanna	              Gen 5	    4	      False	0
+'''
+
+# encode generation labels using one-hot encoding scheme
+gen_ohe = OneHotEncoder()
+gen_feature_arr = gen_ohe.fit_transform(poke_df[['Gen_Label']]).toarray()
+gen_feature_labels = list(gen_le.classes_)
+gen_features = pd.DataFrame(gen_feature_arr, columns=gen_feature_labels)
+
+# encode legendary status labels using one-hot encoding scheme
+leg_ohe = OneHotEncoder()
+leg_feature_arr = leg_ohe.fit_transform(poke_df[['Lgnd_Label']]).toarray()
+leg_feature_labels = ['Legendary_'+str(cls_label) for cls_label in leg_le.classes_]
+leg_features = pd.DataFrame(leg_feature_arr, columns=leg_feature_labels)
+
+# Next we have to concatenate the new dfs into the original df
+
+poke_df_ohe = pd.concat([poke_df_sub, gen_features, leg_features], axis=1)
+columns = sum([['Name', 'Generation', 'Gen_Label'],gen_feature_labels,
+              ['Legendary', 'Lgnd_Label'],leg_feature_labels], [])
+poke_df_ohe[columns].iloc[4:10]
+
+# Dummy Coding Scheme
+
+'''
+Another way of one hot encoding the categorical data is by dummy encoding.
+'''
+
+gen_dummy_features = pd.get_dummies(poke_df['Generation'], drop_first=True)
+pd.concat([poke_df[['Name', 'Generation']], gen_dummy_features], axis=1).iloc[4:10]
+
+
+
