@@ -117,7 +117,7 @@ fcc_survey_df[['ID.x', 'Age', 'Income', 'Income_log',
                'Income_boxcox_lambda_0', 'Income_boxcox_lambda_opt']].iloc[4:9]
 
 '''
-      ID.x	                         Age	Income	Income_log Income_boxcox_lambda_0	  Income_boxcox_lambda_opt
+      ID.x	                        Age	  Income	Income_log Income_boxcox_lambda_0	  Income_boxcox_lambda_opt
 4	9368291c93d5d5f5c8cdb1a575e18bec	20.0	6000.0	8.699681	      8.699681	                  15.180668
 5	dd0e77eab9270e4b67c19b0d6bbf621b	34.0	40000.0	10.596660	      10.596660                 	21.115342
 6	7599c0aa0419b59fd11ffede98a3665d	23.0	32000.0	10.373522	      10.373522                 	20.346420
